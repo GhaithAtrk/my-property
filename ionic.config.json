@@ -1,0 +1,7 @@
+{
+  "name": "MyProperty",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
