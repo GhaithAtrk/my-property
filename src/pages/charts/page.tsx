@@ -10,7 +10,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import BottomNav from "../../components/BottomNav/page";
 import { Box } from "@mui/material";
 
 ChartJS.register(
@@ -42,7 +41,7 @@ const BarChart: React.FC = () => {
       },
       title: {
         display: true,
-        text: "Bar Chart Example",
+        text: "Bar Chart",
       },
     },
   };
@@ -79,11 +78,10 @@ const BarChart: React.FC = () => {
         <IonTitle>Charts</IonTitle>
       </IonToolbar>
       <IonContent className="h-screen">
-        <Box className="h-full">
+        <Box className="h-[90%] mb-14">
           <Bar options={options} data={data} />
         </Box>
       </IonContent>
-      <BottomNav />
     </IonPage>
   );
 };

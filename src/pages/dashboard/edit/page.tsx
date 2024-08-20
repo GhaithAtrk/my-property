@@ -1,6 +1,5 @@
 import { IonContent, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import { useEffect, useState } from "react";
-import BottomNav from "../../../components/BottomNav/page";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useIonRouter } from "@ionic/react";
@@ -121,7 +120,7 @@ function Edit() {
       </IonToolbar>
       <IonContent className="h-screen">
         <Box>
-          <form onSubmit={handleSubmit} className="p-4 flex flex-col gap-8">
+          <form onSubmit={handleSubmit} className="p-4 mb-16 flex flex-col gap-8">
             <input
               accept="image/*"
               className="mb-4"
@@ -208,7 +207,6 @@ function Edit() {
           </form>
         </Box>
       </IonContent>
-      <BottomNav />
     </IonPage>
   );
 }

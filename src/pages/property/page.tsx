@@ -7,7 +7,6 @@ import {
   IonToolbar,
   useIonRouter,
 } from "@ionic/react";
-import BottomNav from "../../components/BottomNav/page";
 import { Box } from "@mui/material";
 
 const PropertyPage: React.FC = () => {
@@ -44,24 +43,25 @@ const PropertyPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-flex-grow-1">
-      <Box className="">
-        <img
-          src={propData[slug].image}
-          alt="product-image"
-          className="w-full md:w-[60%] mx-auto"
-        />
+        <Box className="">
+          <img
+            src={propData[slug].image}
+            alt="product-image"
+            className="w-full md:w-[60%] mx-auto"
+          />
         </Box>
-        <Box className="p-4 flex flex-col gap-4">
-          <Box>Location: {propData[slug].location}</Box>
-          <Box>City: {propData[slug].city}</Box>
-          <Box>State: {propData[slug].state}</Box>
-          <Box>Asking price: {propData[slug].price}</Box>
-          <Box>Type Of Property: {propData[slug].type}</Box>
-          <Box>Number Of Rooms: {propData[slug].rooms}</Box>
-          <Box>Number Of Bathrooms: {propData[slug].bathrooms}</Box>
+        <Box className="p-4  mb-20">
+          <Box className="flex flex-col gap-4 mx-auto md:w-[60%]">
+            <Box>Location: {propData[slug].location}</Box>
+            <Box>City: {propData[slug].city}</Box>
+            <Box>State: {propData[slug].state}</Box>
+            <Box>Asking price: {propData[slug].price}</Box>
+            <Box>Type Of Property: {propData[slug].type}</Box>
+            <Box>Number Of Rooms: {propData[slug].rooms}</Box>
+            <Box>Number Of Bathrooms: {propData[slug].bathrooms}</Box>
+          </Box>
         </Box>
       </IonContent>
-      <BottomNav />
     </IonPage>
   );
 };

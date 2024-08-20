@@ -1,6 +1,5 @@
 import { IonContent, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import { useState } from "react";
-import BottomNav from "../../../components/BottomNav/page";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useIonRouter } from "@ionic/react";
@@ -174,7 +173,6 @@ function Add() {
           </form>
         </Box>
       </IonContent>
-      <BottomNav />
     </IonPage>
   );
 }

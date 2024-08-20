@@ -6,7 +6,6 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import "./Home.css";
-import BottomNav from "../components/BottomNav/page";
 import Cards from "../components/Cards/page";
 
 const Home: React.FC = () => {
@@ -20,7 +19,6 @@ const Home: React.FC = () => {
       <IonContent className="h-screen">
         <Cards />
       </IonContent>
-      <BottomNav />
     </IonPage>
   );
 };

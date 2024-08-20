@@ -18,7 +18,7 @@ export default function BottomNav() {
       onChange={(event, newValue) => {
         setValue(newValue);
       }}
-      className="sticky bottom-0"
+      className="fixed bottom-0 w-full"
     >
       <BottomNavigationAction
         onClick={() => {

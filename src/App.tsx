@@ -37,6 +37,7 @@ import "./theme/variables.css";
 import Charts from "./pages/charts/page";
 import Add from "./pages/dashboard/add/page";
 import Edit from "./pages/dashboard/edit/page";
+import BottomNav from "./components/BottomNav/page";
 
 setupIonicReact();
 
@@ -64,6 +65,7 @@ const App: React.FC = () => (
         </Route>
         <Route path="/property/:slug" component={PropertyPage} />
       </IonRouterOutlet>
+      <BottomNav />
     </IonReactRouter>
   </IonApp>
 );
