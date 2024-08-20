@@ -48,14 +48,7 @@ function Edit() {
 
   const Router = useIonRouter();
 
-  const handleImageUpload = (e: any) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(file);
-    }
-  };
-
-  const [image, setImage] = useState<Blob | MediaSource | null>();
+  const [image, setImage] = useState<string | null>();
   const [title, setTitle] = useState("");
   const [city, setCity] = useState("");
   const [location, setLocation] = useState("");
@@ -83,7 +76,7 @@ function Edit() {
       type: type,
       rooms: rooms,
       bathrooms: bathrooms,
-      image: image ? URL.createObjectURL(image) : null, 
+      image: image
     };
 
 
@@ -113,6 +106,13 @@ function Edit() {
     }
   }, [propData]);
 
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      setImage(URL.createObjectURL(file));
+    }
+  };
+
   return (
     <IonPage>
       <IonToolbar>
@@ -121,20 +121,31 @@ function Edit() {
       <IonContent className="h-screen">
         <Box>
           <form onSubmit={handleSubmit} className="p-4 mb-16 flex flex-col gap-8">
-            <input
-              accept="image/*"
-              className="mb-4"
-              onChange={handleImageUpload}
-              style={{ display: "none" }}
-              id="raised-button-file"
-              multiple
-              type="file"
-            />
-            <label htmlFor="raised-button-file" className="w-fit">
-              <Button variant="contained" component="span" className="">
-                Upload
-              </Button>
-            </label>
+          <Box className="flex flex-row justify-around items-center">
+              <Box className={'w-[160px] h-[160px] border-4 border-red-gray'}>
+                {image && (
+                  <img
+                    src={image}
+                    alt="Uploaded"
+                    className="w-[150px] h-[150px]"
+                  />
+                )}
+              </Box>
+              <input
+                accept="image/*"
+                className="mb-4"
+                onChange={handleImageUpload}
+                style={{ display: "none" }}
+                id="raised-button-file"
+                multiple
+                type="file"
+              />
+              <label htmlFor="raised-button-file" className="w-fit">
+                <Button variant="contained" component="span" className="">
+                  Upload
+                </Button>
+              </label>
+            </Box>
             <CssTextField
               label="Title"
               value={title}
