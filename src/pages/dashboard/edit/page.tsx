@@ -1,8 +1,9 @@
 import { IonContent, IonPage, IonTitle, IonToolbar } from "@ionic/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useIonRouter } from "@ionic/react";
+import { DataContext } from "../../../context/DataContext";
 
 const CssTextField = styled(TextField)({
   "& label": {
@@ -35,16 +36,7 @@ function Edit() {
 
   const UrlSlug: any = routeInfo.pathname.split("/").pop();
 
-  let propData: any;
-
-  if (typeof window !== "undefined") {
-    const storedData = localStorage.getItem("propData");
-    if (storedData) {
-      propData = JSON.parse(storedData);
-    } else {
-      propData = {};
-    }
-  }
+  const { propData }: any = useContext(DataContext);
 
   const Router = useIonRouter();
 
@@ -62,8 +54,6 @@ function Edit() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    let data: any = JSON.parse(localStorage.getItem("propData") || "{}");
-
     const newEntry = {
       title: title,
       city: city,
@@ -77,9 +67,9 @@ function Edit() {
       image: image,
     };
 
-    data[newEntry.title] = newEntry;
+    propData[newEntry.slug] = newEntry;
 
-    localStorage.setItem("propData", JSON.stringify(data));
+    localStorage.setItem("propData", JSON.stringify(propData));
 
     setTitle("");
     setImage(null);
@@ -100,7 +90,7 @@ function Edit() {
       setRooms(propData[UrlSlug].rooms);
       setBathrooms(propData[UrlSlug].bathrooms);
     }
-  }, [propData]);
+  }, []);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
