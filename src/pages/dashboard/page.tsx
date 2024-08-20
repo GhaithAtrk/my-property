@@ -4,13 +4,19 @@ import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { useIonRouter } from "@ionic/react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DataContext } from "../../context/DataContext";
 
 function Dashboard() {
   const router = useIonRouter();
 
   const { propData, setPropData }: any = useContext(DataContext);
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredPropData: any = Object.values(propData).filter((item: any) =>
+    item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   function handleDelete(slug: string) {
     const updatedData = { ...propData };
@@ -34,45 +40,47 @@ function Dashboard() {
           >
             Add
           </Button>
-          <SearchBox />
+          <SearchBox setSearchQuery={setSearchQuery} />
         </Box>
         <Box className="mb-14">
-          {Object.entries(propData).map(([key, property]: [string, any]) => (
-            <Box
-              key={key}
-              className="bg-gray-600 border-b-2 py-4 px-0 inline-flex flex-row justify-between w-full"
-            >
-              <Box className="flex w-fit flex-1 justify-center items-center">
-                <img
-                  src={property.image}
-                  alt={property.slug}
-                  loading="lazy"
-                  className="w-[160px] rounded-sm"
-                />
-              </Box>
-              <Box className="flex flex-col flex-1 w-fit justify-around items-center">
-                <Box>
-                  <IonTitle className="text-sm">{property.title}</IonTitle>
+          {Object.entries(filteredPropData).map(
+            ([key, property]: [string, any]) => (
+              <Box
+                key={key}
+                className="bg-gray-600 border-b-2 py-4 px-0 inline-flex flex-row justify-between w-full"
+              >
+                <Box className="flex w-fit flex-1 justify-center items-center">
+                  <img
+                    src={property.image}
+                    alt={property.slug}
+                    loading="lazy"
+                    className="w-[160px] rounded-sm"
+                  />
                 </Box>
-                <Box className="flex flex-row gap-2">
-                  <Button
-                    variant="contained"
-                    onClick={() => {
-                      router.push(`/dashboard/edit/${property.slug}`);
-                    }}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    variant="contained"
-                    onClick={() => handleDelete(property.slug)}
-                  >
-                    Delete
-                  </Button>
+                <Box className="flex flex-col flex-1 w-fit justify-around items-center">
+                  <Box>
+                    <IonTitle className="text-sm">{property.title}</IonTitle>
+                  </Box>
+                  <Box className="flex flex-row gap-2">
+                    <Button
+                      variant="contained"
+                      onClick={() => {
+                        router.push(`/dashboard/edit/${property.slug}`);
+                      }}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="contained"
+                      onClick={() => handleDelete(property.slug)}
+                    >
+                      Delete
+                    </Button>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-          ))}
+            )
+          )}
         </Box>
       </IonContent>
     </IonPage>

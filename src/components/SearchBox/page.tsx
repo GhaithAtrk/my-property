@@ -1,5 +1,4 @@
 import { styled, alpha } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -45,7 +44,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchBox() {
+export default function SearchBox({ setSearchQuery }: any) {
   return (
     <Search>
       <SearchIconWrapper>
@@ -55,6 +54,7 @@ export default function SearchBox() {
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
         className="h-full"
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
     </Search>
   );
