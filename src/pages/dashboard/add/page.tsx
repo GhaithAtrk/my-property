@@ -1,8 +1,9 @@
 import { IonContent, IonPage, IonTitle, IonToolbar } from "@ionic/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useIonRouter } from "@ionic/react";
+import { DataContext } from "../../../context/DataContext";
 
 const CssTextField = styled(TextField)({
   "& label": {
@@ -44,10 +45,10 @@ function Add() {
   const [rooms, setRooms] = useState("");
   const [bathrooms, setBathrooms] = useState("");
 
+  const { propData }: any = useContext(DataContext);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
-
-    let data: any = JSON.parse(localStorage.getItem("propData") || "{}");
 
     const newEntry = {
       title: title,
@@ -62,9 +63,9 @@ function Add() {
       image: image,
     };
 
-    data[newEntry.title] = newEntry;
+    propData[newEntry.slug] = newEntry;
 
-    localStorage.setItem("propData", JSON.stringify(data));
+    localStorage.setItem("propData", JSON.stringify(propData));
 
     setTitle("");
     setImage(null);
