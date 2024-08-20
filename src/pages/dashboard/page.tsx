@@ -4,27 +4,18 @@ import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { useIonRouter } from "@ionic/react";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { DataContext } from "../../context/DataContext";
 
 function Dashboard() {
   const router = useIonRouter();
 
-  const [propData, setPropData] = useState<any>({});
-
-  useEffect(() => {
-    const storedData = localStorage.getItem("propData");
-    if (storedData) {
-      setPropData(JSON.parse(storedData));
-    }
-  }, []);
+  const { propData, setPropData }: any = useContext(DataContext);
 
   function handleDelete(slug: string) {
-    let updatedData = { ...propData };
-    console.log(updatedData);
+    const updatedData = { ...propData };
     delete updatedData[slug];
-    console.log(slug);
     setPropData(updatedData);
-    localStorage.setItem("propData", JSON.stringify(updatedData));
   }
 
   return (
@@ -67,7 +58,7 @@ function Dashboard() {
                   <Button
                     variant="contained"
                     onClick={() => {
-                      router.push("/dashboard/edit");
+                      router.push(`/dashboard/edit/${property.slug}`);
                     }}
                   >
                     Edit

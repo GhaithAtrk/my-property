@@ -38,6 +38,7 @@ import Charts from "./pages/charts/page";
 import Add from "./pages/dashboard/add/page";
 import Edit from "./pages/dashboard/edit/page";
 import BottomNav from "./components/BottomNav/page";
+import { DataProvider } from "./context/DataContext";
 
 setupIonicReact();
 
@@ -45,25 +46,27 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-        <Route exact path="/dashboard">
-          <Dashboard />
-        </Route>
-        <Route exact path="/charts">
-          <Charts />
-        </Route>
-        <Route exact path="/dashboard/add">
-          <Add />
-        </Route>
-        <Route exact path="/dashboard/edit">
-          <Edit />
-        </Route>
-        <Route path="/property/:slug" component={PropertyPage} />
+        <DataProvider>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route exact path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route exact path="/charts">
+            <Charts />
+          </Route>
+          <Route exact path="/dashboard/add">
+            <Add />
+          </Route>
+          <Route exact path="/dashboard/edit/:slug">
+            <Edit />
+          </Route>
+          <Route path="/property/:slug" component={PropertyPage} />
+        </DataProvider>
       </IonRouterOutlet>
       <BottomNav />
     </IonReactRouter>

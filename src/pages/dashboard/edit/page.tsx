@@ -62,9 +62,7 @@ function Edit() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-
     let data: any = JSON.parse(localStorage.getItem("propData") || "{}");
-
 
     const newEntry = {
       title: title,
@@ -76,15 +74,12 @@ function Edit() {
       type: type,
       rooms: rooms,
       bathrooms: bathrooms,
-      image: image
+      image: image,
     };
-
 
     data[newEntry.title] = newEntry;
 
-
     localStorage.setItem("propData", JSON.stringify(data));
-
 
     setTitle("");
     setImage(null);
@@ -94,6 +89,7 @@ function Edit() {
 
   useEffect(() => {
     if (propData[UrlSlug]) {
+      setImage(propData[UrlSlug].image)
       setTitle(propData[UrlSlug].title);
       setCity(propData[UrlSlug].city);
       setLocation(propData[UrlSlug].location);
@@ -120,9 +116,12 @@ function Edit() {
       </IonToolbar>
       <IonContent className="h-screen">
         <Box>
-          <form onSubmit={handleSubmit} className="p-4 mb-16 flex flex-col gap-8">
-          <Box className="flex flex-row justify-around items-center">
-              <Box className={'w-[160px] h-[160px] border-4 border-red-gray'}>
+          <form
+            onSubmit={handleSubmit}
+            className="p-4 mb-16 flex flex-col gap-8"
+          >
+            <Box className="flex flex-row justify-around items-center">
+              <Box className={"w-[160px] h-[160px] border-4 border-red-gray"}>
                 {image && (
                   <img
                     src={image}

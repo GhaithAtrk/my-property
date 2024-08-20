@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
   IonContent,
   IonHeader,
@@ -8,28 +8,20 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import { Box } from "@mui/material";
+import { DataContext } from "../../context/DataContext";
 
 const PropertyPage: React.FC = () => {
   const { routeInfo } = useIonRouter();
 
   const slug: any = routeInfo.pathname.split("/").pop();
 
-  let propData: any = {};
-
-  if (typeof window !== "undefined") {
-    const storedData = localStorage.getItem("propData");
-    if (storedData) {
-      propData = JSON.parse(storedData);
-    } else {
-      propData = {};
-    }
-  }
+  const { propData }: any = useContext(DataContext);
 
   if (!propData || !propData[slug]) {
     return (
       <IonPage>
         <IonContent className="ion-text-center ion-padding">
-          Loading..........
+          Loading.....
         </IonContent>
       </IonPage>
     );

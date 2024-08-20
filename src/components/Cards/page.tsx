@@ -1,17 +1,6 @@
 import SingleCard from "../SingleCard/page";
 
-function Cards() {
-
-  let propData: any;
-
-  if (typeof window !== "undefined") {
-    const storedData = localStorage.getItem("propData");
-    if (storedData) {
-      propData = JSON.parse(storedData);
-    } else {
-      propData = {};
-    }
-  }
+function Cards({propData}: any) {
 
   return (
     <div className="flex my-4 mb-20 flex-col md:flex-row flex-wrap gap-4">
