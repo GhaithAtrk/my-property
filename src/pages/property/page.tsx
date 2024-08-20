@@ -44,12 +44,13 @@ const PropertyPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-flex-grow-1">
+      <Box className="">
         <img
           src={propData[slug].image}
           alt="product-image"
-          width={400}
-          height={400}
+          className="w-full md:w-[60%] mx-auto"
         />
+        </Box>
         <Box className="p-4 flex flex-col gap-4">
           <Box>Location: {propData[slug].location}</Box>
           <Box>City: {propData[slug].city}</Box>

@@ -74,7 +74,7 @@ export const propertiesData = {
   "riverside-cottage": {
     slug: "riverside-cottage",
     title: "Riverside Cottage",
-    image: "/house-4.jpg",
+    image: "/house-5.jpg",
     location: "Kuala Kangsar",
     rooms: "4",
     bathrooms: "2",
@@ -98,7 +98,7 @@ export const propertiesData = {
   "eco-lodge": {
     slug: "eco-lodge",
     title: "Eco Lodge",
-    image: "/apartment-3.jpg",
+    image: "/apartment-4.jpg",
     location: "Sepang",
     rooms: "5",
     bathrooms: "3",
@@ -110,7 +110,7 @@ export const propertiesData = {
   "forest-retreat": {
     slug: "forest-retreat",
     title: "Forest Retreat",
-    image: "/apartment-3.jpg",
+    image: "/apartment-5.jpg",
     location: "Fraser's Hill",
     rooms: "6",
     bathrooms: "4",
